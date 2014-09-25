@@ -1,0 +1,687 @@
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\allowdisplaybreaks[4]
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{breqn}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+
+% Novos comandos
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\deve}[2]{\frac{\mathrm{d}\, #1}{\mathrm{d}\, #2}}
+\newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\mbox{grad }}
+\newcommand{\diver}{\mbox{div }}
+\newcommand{\rot}{\mbox{rot }}
+
+% Customização da classe exam
+\newcommand{\mycheader}{Lista 1}
+\header{F328}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Disponível em \url{}}{}{Reportar erros em \url{https://github.com/r-gaia-cs/f328-1}}
+\footrule
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+% Metadados do PDF
+\hypersetup{
+pdftitle={F328-1}
+}
+
+\begin{document}
+Nestes exerc\'{i}cios ser\'{a} utilizado
+\begin{dgroup*}
+  \begin{dmath}
+    \epsilon \approx 8,85 \times 10^{-12} \text{C$^2$/Nm$^2$},
+  \end{dmath}
+  \begin{dmath}
+    k \approx 8,99 \times 10^{-9} \text{Nm$^2$/C$^2$}.
+  \end{dmath}
+\end{dgroup*}
+
+\begin{questions}
+  \question Duas esferas condutoras iguais, mantidas fixas, se atraem mutuamente
+  com uma for\c{c}a de $0,108$N quando a dist\^{a}ncia entre os centros \'{e}
+  $50,0$cm. As esferas s\~{a}o ligadas por um fio condutor de di\^{a}metro
+  desprez\'{i}vel. Quando o fio \'{e} removido, as esferas se repelem com uma
+  for\c{c}a de $0,0360$N. Supondo que a carga total das esferas era
+  inicialmente positiva, determine:
+  \begin{parts}
+    \part a carga negativa inicial de uma das esferas;
+    \begin{solution}
+      Considere a situa\c{c}\~{a}o inicial abaixo:
+      \begin{center}
+        \begin{tikzpicture}[scale=2]
+          \node[draw, circle] (A) at (0,0) {$A$};
+          \node[draw, circle] (B) at (4,0) {$B$};
+          \draw[->] (A) -- +(1,0) node[above] {$\abs{F_i} = 0,108\text{N}$};
+          \draw[->] (B) -- +(-1,0) node[above] {$\abs{F_i} = 0,108\text{N}$};
+        \end{tikzpicture}
+      \end{center}
+      Ent\~{a}o,
+      \begin{dmath*}
+        0,108 = k \frac{\abs{q_A} \abs{q_B}}{(0,5)^2}
+      \end{dmath*}
+
+      E a situa\c{c}\~{a}o final abaixo:
+      \begin{center}
+        \begin{tikzpicture}[scale=2]
+          \node[draw, circle] (A) at (0,0) {$A$};
+          \node[draw, circle] (B) at (2,0) {$B$};
+          \draw[->] (A) -- +(-1,0) node[above] {$\abs{F_i} = 0,0360\text{N}$};
+          \draw[->] (B) -- +(1,0) node[above] {$\abs{F_i} = 0,0360\text{N}$};
+        \end{tikzpicture}
+      \end{center}
+      Ent\~{a}o,
+      \begin{dmath*}
+        0,0360 = k \frac{\abs{\left( \left( q_A + q_B \right) / 2
+        \right)^2}}{(0,5)^2}
+      \end{dmath*}
+    \end{solution}
+
+    Trabalhando o sistema, temos que
+    \begin{dgroup*}
+      \begin{dmath}
+        \abs{q_A} \abs{q_B} = 0,108 (0,5)^2 k^{-1},
+      \end{dmath}
+      \begin{dmath}
+        (q_A + q_B)^2 = 0,0360 (0,5)^2 4 k^{-1}.
+      \end{dmath}
+    \end{dgroup*}
+    Resolvendo o sistema, temos que
+    \part a carga positiva inicial da outra esfera.
+    \begin{solution}
+    
+    \end{solution}
+  \end{parts}
+
+  \question Cinco cargas iguais a $Q$ s\~{a}o igualmente espa\c{c}adas em uma
+  semicircunfer\^{e}ncia de raio $R$. Determine a for\c{c}a atuante sobre uma
+  carga $q$ localizada no centro da semicircunfer\^{e}ncia.
+  \begin{solution}
+    Considere a situa\c{c}\~{a}o abaixo:
+    \begin{center}
+      \begin{tikzpicture}[scale=2]
+        \node[draw, circle] (q) at (0,0) {$q$};
+        \node[draw, circle] (Q1) at (0:1) {$Q_1$};
+        \node[draw, circle] (Q2) at (45:1) {$Q_2$};
+        \node[draw, circle] (Q3) at (90:1) {$Q_3$};
+        \node[draw, circle] (Q4) at (135:1) {$Q_4$};
+        \node[draw, circle] (Q5) at (180:1) {$Q_5$};
+        \draw[->] (q) -- +(.5,0) node[below] {$F_5$};
+        \draw[->] (q) -- +(-.5,0) node[below] {$F_1$};
+        \draw[->] (q) -- +(-45:.5) node[below] {$F_4$};
+        \draw[->] (q) -- +(-135:.5) node[below] {$F_2$};
+        \draw[->] (q) -- +(0,-.5) node[below] {$F_3$};
+      \end{tikzpicture}
+    \end{center}
+    Ent\~{a}o a for\c{c}a resultante $F$ corresponde a
+    \begin{align*}
+      F &= F_3 + 2 F_2 \sin(\pi/4) \\
+      &= k \frac{\abs{q} \abs{Q}}{R^2} + 2 \sin(\pi/4) k \frac{\abs{q}
+      \abs{Q}}{R^2} \\
+      &= \left( 1 + 2 \sin(\pi/4) \right) k \frac{\abs{q} \abs{Q}}{R^2}.
+    \end{align*}
+  \end{solution}
+
+  \question Os v\'{e}rtices de um hex\'{a}gon regular t\^{e}m tr\^{e}s cargas
+  positivas $Q$ e tr\^{e}s cargas negativas $-Q$. Encontrar a for\c{c}a
+  el\'{e}trica sobre uma carga de prova $q$ colocada no centro do hex\'{a}gono
+  quando as seis cargas s\~{a}o arranjadas em diferentes combina\c{c}\~{o}es. Os
+  lados do hex\'{a}gono t\^{e}m $3,0$cm de comprimento, a carga $Q$ \'{e} de
+  $5,0 \times 10^{-6}$C e a carga $q$ \'{e} de $2,0 \times 10^{-9}$C.
+  \begin{solution}
+    A menos de rota\c{c}\~{a}o, existem tr\^{e}s poss\'{i}eis arranjos para as seis cargas.
+
+    No primeiro arranjo, temos
+    \begin{center}
+      \begin{tikzpicture}
+        \node[draw, circle] (q) at (0,0) {$q$};
+        \node[draw, circle] (Q1) at (120:2) {$+Q$};
+        \node[draw, circle] (Q2) at (180:2) {$+Q$};
+        \node[draw, circle] (Q3) at (240:2) {$+Q$};
+        \node[draw, circle] (Q4) at (300:2) {$-Q$};
+        \node[draw, circle] (Q5) at (0:2) {$-Q$};
+        \node[draw, circle] (Q6) at (60:2) {$-Q$};
+        \draw[->] (q) -- (300:1) node[above right] {$2F$};
+        \draw[->] (q) -- (0:1) node[above] {$2F$};
+        \draw[->] (q) -- (60:1) node[above left] {$2F$};
+      \end{tikzpicture}
+    \end{center}
+    Logo, a for\c{c}a resultante $F_R$ \'{e}
+    \begin{align*}
+      F_R &= 2F + 2 \left( 2F \cos(\pi/3) \right) \\
+      &= 2 \left( 1 + 2 \cos(\pi/3) \right) F \\
+      &= 2 \left( 1 + 2 \cos(\pi/3) \right) k \frac{\abs{q} \abs{Q}}{r^2}.
+    \end{align*}
+
+    No segundo arranjo, temos
+    \begin{center}
+      \begin{tikzpicture}
+        \node[draw, circle] (q) at (0,0) {$q$};
+        \node[draw, circle] (Q1) at (120:2) {$+Q$};
+        \node[draw, circle] (Q2) at (180:2) {$-Q$};
+        \node[draw, circle] (Q3) at (240:2) {$+Q$};
+        \node[draw, circle] (Q4) at (300:2) {$-Q$};
+        \node[draw, circle] (Q5) at (0:2) {$+Q$};
+        \node[draw, circle] (Q6) at (60:2) {$-Q$};
+        \draw[->] (q) -- (300:1) node[above right] {$2F$};
+        \draw[->] (q) -- (180:1) node[above] {$2F$};
+        \draw[->] (q) -- (60:1) node[above left] {$2F$};
+      \end{tikzpicture}
+    \end{center}
+    Logo, a for\c{c}a resultante $F_R$ \'{e}
+    \begin{align*}
+      F_R &= 2F - 2 \left( 2F \cos(\pi/3) \right) \\
+      &= 2 \left( 1 - 2 \cos(\pi/3) \right) F \\
+      &= 2 \left( 1 - 2 \cos(\pi/3) \right) k \frac{\abs{q} \abs{Q}}{r^2}.
+    \end{align*}
+
+    No terceiro arranjo, temos
+    \begin{center}
+      \begin{tikzpicture}
+        \node[draw, circle] (q) at (0,0) {$q$};
+        \node[draw, circle] (Q1) at (120:2) {$+Q$};
+        \node[draw, circle] (Q2) at (180:2) {$+Q$};
+        \node[draw, circle] (Q3) at (240:2) {$-Q$};
+        \node[draw, circle] (Q4) at (300:2) {$-Q$};
+        \node[draw, circle] (Q5) at (0:2) {$+Q$};
+        \node[draw, circle] (Q6) at (60:2) {$-Q$};
+        \draw[->] (q) -- (300:1) node[above right] {$2F$};
+      \end{tikzpicture}
+    \end{center}
+    Logo, a for\c{c}a resultante $F_R$ \'{e}
+    \begin{align*}
+      F_R &= 2F \\
+      &= 2 k \frac{\abs{q} \abs{Q}}{r^2}.
+    \end{align*}
+
+  \end{solution}
+
+  \question Duas bolinhas de acr\'{i}lico id\^{e}nticas t\^{e}m massa $m$ e
+  carga $q$. Quando colocadas em um vaso hemisf\'{e}rico de raio $R$ e de
+  superf\'{i}cie sem atrito, n\~{a}o condutora, as bolinhas se movem e, no
+  equil\'{i}brio elas ficam a uma dist\^{a}ncia $R$ uma da outra, conforme a
+  figura abaixo. Determine a carga de cada bolinha.
+  \begin{center}
+    \begin{tikzpicture}
+      \node[draw, circle] (A) at (-1,0) {$m$};
+      \node[draw, circle] (B) at (1,0) {$m$};
+      \draw[dashed] (A) -- (B) node[midway, below] {$R$} -- +(120:2)
+      node[midway, right] {$R$}  -- (A) node[midway, left] {$R$} ;
+    \end{tikzpicture}
+  \end{center}
+  \begin{solution}
+    Considere o diagrama de for\c{c}as abaixo.
+    \begin{center}
+      \begin{tikzpicture}[scale=1.5]
+        \node[draw, circle] (A) at (-1,0) {$m$};
+        \node[draw, circle] (B) at (1,0) {$m$};
+        \draw[dashed] (A) -- (B) node[midway, below] {$R$} -- +(120:2)
+        node[midway, right] {$R$}  -- (A) node[midway, left] {$R$} ;
+        \draw[->] (A) -- +(0,-.8) node[below] {$P$};
+        \draw[->] (B) -- +(0,-.8) node[below] {$P$};
+        \draw[->] (A) -- +(60:.8) node[right] {$N$};
+        \draw[->] (B) -- +(120:.8) node[left] {$N$};
+        \draw[->] (A) -- +(-.8,0) node[above] {$F$};
+        \draw[->] (B) -- +(.8,0) node[above] {$F$};
+    \end{tikzpicture}
+  \end{center}
+  \end{solution}
+
+  \question 
+  \begin{parts}
+    \part Qual deve ser o valor da massa de um pr\'{o}ton se sua atra\c{c}\~{a}o
+    gravitacional com um outro pr\'{o}ton equilibra exatamente a repuls\~{a}o
+    eletrost\'{a}tica entre eles?
+    \begin{solution}
+      A for\c{c}a eletrost\'{a}tica entre dois pr\'{o}ton, $F_e$, \'{e}
+      \begin{align*}
+        F_e &= k \frac{\abs{q}^2}{r^2},
+      \end{align*}
+      e a for\c{c}a gravitacional entre os pr\'{o}tons, $F_g$, \'{e}
+      \begin{align*}
+        F_g &= G \frac{\abs{m}^2}{r^2}.
+      \end{align*}
+      Igualando as for\c{c}as, temos que
+      \begin{align*}
+        \abs{m}^2 &= \abs{q}^2 k / G.
+      \end{align*}
+    \end{solution}
+
+    \part Qual \'{e} a verdadeira rela\c{c}\~{a}o dessas duas for\c{c}as?
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question Uma carga $q_1 = +25$nC est\'{a} na origem de um sistema de
+  coordenas $xy$. Uma carga $q_2 = -15$nC est\'{a} sobre o eixo $x$ em $x = 2$m
+  e uma carga $q_0 = 20$nC est\'{a} posicionada em um ponto com as
+  coordenadas $x = 2$m e $y = 2$m. Determine o m\'{o}dulo, a dire\c{c}\~{a}o e
+  o sentido da for\c{c}a resultante sobre $q_0$.
+  \begin{solution}
+    Considere a ilustra\c{c}\~{a}o abaixo:
+    \begin{center}
+      \begin{tikzpicture}
+        \node[draw, circle] (q1) at (0,0) {$q_1$};
+        \node[draw, circle] (q2) at (2,0) {$q_2$};
+        \node[draw, circle] (q0) at (2,2) {$q_0$};
+        \draw[->] (q0) -- +(45:1) node[above] {$F_{01}$};
+        \draw[->] (q0) -- +(-90:1) node[below] {$F_{21}$};
+      \end{tikzpicture}
+    \end{center}
+    Desta forma, a for\c{c}a resultante $F$ \'{e}
+    \begin{align*}
+      F &= F_{01} + F_{21} \\
+      &= \begin{bmatrix}
+        k \abs{q_0} \abs{q_1} \cos(\pi/4) / (2\sqrt{2})^2 \\
+        k \abs{q_0} \abs{q_1} \cos(\pi/4) / (2\sqrt{2})^2
+      \end{bmatrix} + \begin{bmatrix}
+        0 \\
+        k \abs{q_0} \abs{q_2} / 2^2
+      \end{bmatrix}
+    \end{align*}
+  \end{solution}
+
+  \question Uma moeda de cobre (Z = 29) possui uma massa de $3$g. Qual \'{e} a
+  carga el\'{e}trica total de todos eletr\'{o}ns da moeda?
+  \begin{solution}
+    A massa molar do cobre \'{e} $63,546$g/mol e, portanto, em $3$g de cobre
+    existe $3/63,546$mol. Como cada mol possue $6,02 \times 10^{23}$
+    mol\'{e}culas e cada mol\'{e}cula possue $29$ el\'{e}trons cuja carga \'{e}
+    $-1,60217733 \times 10^{-19}$C. Logo, a carga el\'{e}trica total de todos os
+    el\'{e}trons da moeda \'{e}
+    \begin{align*}
+      \frac{3}{63,546} \left( 6,02 \times 10^{23} \right) 29 \left( -1,60 \times
+      10^{-19} \right)
+    \end{align*}
+  \end{solution}
+
+  \question Uma barra n\~{a}o condutora carregada, com um comprimento de $2,0$m
+  e uma se\c{c}\~{a}o reta de $4,0$m$^2$, est\'{a} sobre o semieixo positivo com
+  uma das extremidades na origen. A densidade volum\'{e}trica de carga $\rho$
+  \'{e} a carga por unidade de volume em C/m$^3$. Determine quantos
+  el\'{e}trons em excesso existem na barra se:
+  \begin{parts}
+    \part $\rho$ \'{e} uniforme, com valor de $-4,0\mu$C/m$^3$,
+    \begin{solution}
+      Considere a ilustra\c{c}\~{a}o abaixo para a barra.
+      \begin{center}
+        \begin{tikzpicture}
+          \draw (0,1,0) -- (0,1,1) -- (0,0,1);
+          \draw (2,0,0) -- (2,1,0) -- (2,1,1) -- (2,0,1) -- (2,0,0);
+          \draw (0,1,0) -- (2,1,0);
+          \draw (0,1,1) -- (2,1,1);
+          \draw (0,0,1) -- (2,0,1);
+        \end{tikzpicture}
+      \end{center}
+
+      Para $\rho$ uniforme, temos que a carga da barra \'{e}
+      \begin{align*}
+        2\text{m} \left( 4\text{m$^2$} \right) \left( -4,0\mu\text{C/m$^3$}
+        \right).
+      \end{align*}
+      Como a carga do el\'{e}tron \'{e} $-1,6 \times 10^{-19}$C, temos que o
+      múmero de el\'{e}trons \'{e}
+      \begin{align*}
+        2\text{m} \left( 4\text{m$^2$} \right) \left( -4,0\mu\text{C/m$^3$}
+        \right) \left( -1,6 \times 10^{-19}\text{C} \right)^{-1}.
+      \end{align*}
+    \end{solution}
+
+    \part o valor de $\rho$ \'{e} dado pela express\~{a}o $\rho = b x^2$, onde $b =
+    2,0\mu$C/m$^5$.
+    \begin{solution}
+      Se $\rho = b x^2$, ent\~{a}o a carga total da barra \'{e}
+      \begin{align*}
+        4 \int_0^2 b x^2 \,\mathrm{d}x &= 4 b \int_0^2 x^2 \,\mathrm{d}x \\
+        &= 4 b \left( \left. \frac{x^3}{3} \right|_0^2 \right) \\
+        &= 4 b \left( 8 / 3 \right).
+      \end{align*}
+      Como a carga do el\'{e}tron \'{e} $-1,6 \times 10^{-19}$C, temos que o
+      múmero de el\'{e}trons \'{e}
+      \begin{align*}
+        4 b \left( 8 / 3 \right) \left( -1,6 \times 10^{-19} \right)^{-1}.
+      \end{align*}
+    \end{solution}
+  \end{parts}
+
+  \question Tr\^{e}s part\'{i}culas carregadas forma um tri\^{a}ngulo: a
+  part\'{i}cula 1, com carga $Q_1 = 80,0$nC, est\'{a} no ponto $(0;3,0)$mm, e a
+  part\'{i}cula 2, com carga $Q_2$, est\'{a} no ponto $(0;-3,0)$mm, e a
+  part\'{i}cula 3, com carga $q = 18,0$nC, est\'{a} no ponto $(4,0;0)$mm. Em
+  termos dos vetores unit\'{a}rios, qual \'{e} a for\c{c}a eletrost\'{a}tica
+  exercida sobre a part\'{i}cula 3 pelas outras duas part\'{i}culas:
+  \begin{parts}
+    \part para $Q_2 = 80,0$nC?
+    \begin{solution}
+      Considere a ilustra\c{c}\~{a}o abaixo para situa\c{c}\~{a}o descrita
+      anteriormente.
+      \begin{center}
+        \begin{tikzpicture}[scale=.5]
+          \node[draw, circle] (Q1) at (0,3) {$Q_1$};
+          \node[draw, circle] (Q2) at (0,-3) {$Q_2$};
+          \node[draw, circle] (Q3) at (4,0) {$Q_3$};
+          \draw[->] (Q2) -- +(0,-2) node[below] {$F_{21}$};
+          \draw[->] (Q2) -- +(210:2) node[below] {$F_{23}$};
+        \end{tikzpicture}
+      \end{center}
+
+      Ent\~{a}o, a for\c{c}a resultante \'{e}
+      \begin{align*}
+        F &= F_{21} + F_{23} \\
+        &= \begin{bmatrix}
+          0 \\
+          - k \abs{Q_1} \abs{Q_2} 6^{-2}
+        \end{bmatrix} + \begin{bmatrix}
+          - k \abs{Q_3} \abs{Q_2} 5^{-2} \left( 4/5 \right) \\
+          - k \abs{Q_3} \abs{Q_2} 5^{-2} \left( 3/5 \right)
+        \end{bmatrix} \\
+        &= \begin{bmatrix}
+          0 - k \abs{Q_3} \abs{Q_2} 5^{-2} \left( 4/5 \right) \\
+          - k \abs{Q_1} \abs{Q_2} 6^{-2} - k \abs{Q_3} \abs{Q_2} 5^{-2} \left( 3/5 \right)
+        \end{bmatrix}
+      \end{align*}
+    \end{solution}
+
+    \part para $Q_2 = -80,0$nC?
+    \begin{solution}
+      Considere a ilustra\c{c}\~{a}o abaixo para situa\c{c}\~{a}o descrita
+      anteriormente.
+      \begin{center}
+        \begin{tikzpicture}[scale=.5]
+          \node[draw, circle] (Q1) at (0,3) {$Q_1$};
+          \node[draw, circle] (Q2) at (0,-3) {$Q_2$};
+          \node[draw, circle] (Q3) at (4,0) {$Q_3$};
+          \draw[->] (Q2) -- +(0,+2) node[above] {$F_{21}$};;
+          \draw[->] (Q2) -- +(30:2) node[above] {$F_{23}$};
+        \end{tikzpicture}
+      \end{center}
+      
+      Ent\~{a}o, a for\c{c}a resultante \'{e}
+      \begin{align*}
+        F &= F_{21} + F_{23} \\
+        &= \begin{bmatrix}
+          0 \\
+          k \abs{Q_1} \abs{Q_2} 6^{-2}
+        \end{bmatrix} + \begin{bmatrix}
+          k \abs{Q_3} \abs{Q_2} 5^{-2} \left( 4/5 \right) \\
+          k \abs{Q_3} \abs{Q_2} 5^{-2} \left( 3/5 \right)
+        \end{bmatrix} \\
+        &= \begin{bmatrix}
+          0 + k \abs{Q_3} \abs{Q_2} 5^{-2} \left( 4/5 \right) \\
+          k \abs{Q_1} \abs{Q_2} 6^{-2} + k \abs{Q_3} \abs{Q_2} 5^{-2} \left( 3/5 \right)
+        \end{bmatrix}
+      \end{align*}
+    \end{solution}
+  \end{parts}
+
+  \question Duas pequenas esferas, cada uma com massa igual a $2,00$g,
+  encontram-se suspensas por um fio de massa despres\'{i}vel de comprimento
+  igual a $10,0$cm como ilustrado na figura abaixo. Um campo el\'{e}trico
+  uniforme \'{e} aplicado na dire\c{c}\~{a}o $x$. As duas esferas possuem carga
+  igual a $-5,00 \times 10^{-8}$C e $+5,00 \times 10^{-8}$C. Determine o campo
+  el\'{e}trico que possibilita as esferas estarem em equil\'{i}brio para um
+  \^{a}ngulo $\theta = \pi/18$.
+  \begin{center}
+    \begin{tikzpicture}
+      \node[draw, circle] (Q1) at (-70:3) {$+$};
+      \node[draw, circle] (Q2) at (-110:3) {$-$};
+      \draw (-2,0) -- (2,0);
+      \draw[dashed] (0,.2) -- (0,-4);
+      \draw (0,0) -- (Q1);
+      \draw (0,0) -- (Q2);
+      \draw (-70:1) arc (-70:-90:1) node[below right] {$\theta$};
+      \draw (-110:1) arc (-110:-90:1) node[below left] {$\theta$};
+    \end{tikzpicture}
+  \end{center}
+  \begin{solution}
+    Considere as for\c{c}as representadas abaixo:
+    \begin{center}
+      \begin{tikzpicture}
+        \node[draw, circle] (Q1) at (-70:3) {$+$};
+        \node[draw, circle] (Q2) at (-110:3) {$-$};
+        \draw (-2,0) -- (2,0);
+        \draw[dashed] (0,.2) -- (0,-4);
+        \draw[dotted] (0,0) -- (Q1);
+        \draw[dotted] (0,0) -- (Q2);
+        \draw (-70:1) arc (-70:-90:1) node[below right] {$\theta$};
+        \draw (-110:1) arc (-110:-90:1) node[below left] {$\theta$};
+
+        \draw[->] (1.6,-.2) -- +(.4,0) node[below right] {$E$};
+        \draw[->] (Q1) -- +(0,-.8) node[below] {$P$};
+        \draw[->] (Q1) -- +(-.8,0) node[below] {$F_p$};
+        \draw[->] (Q1) -- +(110:.8) node[above right] {$N$};
+        \draw[->] (Q1) -- +(.8,0) node[above right] {$F_e$};
+        \draw[->] (Q2) -- +(0,-.8) node[below] {$P$};
+        \draw[->] (Q2) -- +(.8,0) node[below] {$F_p$};
+        \draw[->] (Q2) -- +(70:.8) node[above left] {$N$};
+        \draw[->] (Q2) -- +(-.8,0) node[above left] {$F_e$};
+      \end{tikzpicture}
+    \end{center}
+    
+    Logo,
+    \begin{align*}
+      F_R &= N + F_e + P + F_p \\
+      &= \begin{bmatrix}
+        \norm{N} \sin(\pi/18) \\
+        \norm{N} \cos(\pi/18)
+      \end{bmatrix} + \begin{bmatrix}
+        \norm{F_e} \\
+        0
+      \end{bmatrix} + \begin{bmatrix}
+        0 \\
+        \norm{P}
+      \end{bmatrix} + \begin{bmatrix}
+        \norm{F_p} \\
+        0
+      \end{bmatrix}.
+    \end{align*}
+    Como $F_R = 0$, verifica-se que
+    \begin{align*}
+      \norm{N} &= \norm{P} \left( \cos(\pi/18) \right)^{-1}
+    \end{align*}
+    e
+    \begin{align*}
+      0 &= \norm{P} \left( \cos(\pi/18) \right)^{-1} \sin(\pi/18) + \norm{F_e} +
+      \norm{F_p} \\
+      &= \norm{m g} \left( \cos(\pi/18) \right)^{-1} \sin(\pi/18) + \norm{\frac{k
+      q^2}{d^2}} + \norm{E q}
+    \end{align*}
+  \end{solution}
+
+  \question No decaimento radioativo o núcleo $^{238}$U se transforma em
+  $^{234}$Th e $^4$He, que \'{e} ejetado. (Trata-se de núcleos, e n\~{a}o de
+  \'{a}tomos; assim n\~{a}o h\'{a} el\'{e}trons envolvidos.) Para uma
+  dist\^{a}ncia entre os núcleos de $^{234}$Th e $^4$He de $9,0 \times
+  10^{-15}$m, determine:
+  \begin{parts}
+    \part a for\c{c}a eletrost\'{a}tica entre os núcleos;
+    \begin{solution}
+      
+    \end{solution}
+
+    \part a acelera\c{c}\~{a}o do núcleo de $^4$He.
+    \begin{solution}
+    
+    \end{solution}
+  \end{parts}
+
+  \question Dois blocos met\'{a}licos id\^{e}nticos, em repouso sobre uma
+  superf\'{i}cie horizontal sem atrito, s\~{a}o ligados por uma mola
+  met\'{a}lica, sem massa, de constante $k = 100$N/m e comprimento relaxado de
+  $0,3$m, como na figura. Colocando-se vagarosamente uma carga $Q$ no sistema, a
+  mola se distende at\'{e} atingir o comprimento de equil\'{i}brio de $0,4$m.
+  Determine o valor de $Q$, supondo que toda a carga se mant\'{e}m nos blocos e
+  que os blocos s\~{a}o como carga puntiformes.
+  \begin{center}
+    \begin{tikzpicture}
+      \node[draw, rectangle] (A) at (0,0) {$m$};
+      \node[draw, rectangle] (B) at (2,0) {$m$};
+      \draw[decorate, decoration=zigzag] (A) -- (B) node[midway, above] {$k$};
+    \end{tikzpicture}
+  \end{center}
+
+  \question Tr\^{e}s cargas de mesmo m\'{o}dulo $q$ est\~{a}o nos v\'{e}rtices
+  de um tri\^{a}ngulo equil\'{a}tero de lado $a$ como ilustrado na figura
+  abaixo.
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[dashed] (0,0) -- (0,2);
+      \node[fill, circle] (P) at (0,0) {};
+      \draw (P) node[below right] {P};
+      \node[draw, circle] (A) at (-1,0) {$m$};
+      \node[draw, circle] (B) at (1,0) {$m$};
+      \draw[dashed] (A) -- (B) -- +(120:2)
+      node[midway, right] {$a$}  -- (A) node[midway, left] {$a$} ;
+    \end{tikzpicture}
+  \end{center}
+  \begin{parts}
+    \part ache o m\'{o}dulo, a dire\c{c}\~{a}o e o sentido da for\c{c}a
+    el\'{e}trica que age sobre uma carga de prova $q_0$, localizada no ponto
+    $P$, a meio caminho entre as cargas negativas, em termos de $q$, $q_0$,
+    $k_c$ e $a$;
+    \begin{solution}
+      
+    \end{solution}
+
+    \part onde deve ser colocada uma carga de $-4q$ de modo que a for\c{c}a
+    total sobre qualquer carga situada em $P$ seja nula? Neste item, considere
+    que $P$ \'{e} a origem e que a dist\^{a}ncia entre a carga $+q$ e $P$ \'{e}
+    $q,0$m.
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question Oito cargas puntiformes, cada uma de m\'{o}dulo $q$, est\~{a}o
+  localizadas nos v\'{e}rtices de um cubo de lado $s$, como na figura abaixo.
+  \begin{center}
+    \begin{tikzpicture}[scale=2]
+      \node[fill, circle] (000) at (0,0,0) {};
+      \node[fill, circle] (100) at (1,0,0) {};
+      \node[fill, circle] (010) at (0,1,0) {};
+      \node[fill, circle] (001) at (0,0,1) {};
+      \node[fill, circle] (110) at (1,1,0) {};
+      \node[fill, circle] (101) at (1,0,1) {};
+      \node[fill, circle] (011) at (0,1,1) {};
+      \node[fill, circle] (111) at (1,1,1) {};
+      \node[above] at (111.north) {$A$};
+      \draw (0,0,0) -- (1,0,0);
+      \draw (0,0,0) -- (0,1,0);
+      \draw (0,0,0) -- (0,0,1);
+      \draw[dashed] (100) -- (110);
+      \draw[dashed] (100) -- (101);
+      \draw[dashed] (010) -- (011);
+      \draw[dashed] (010) -- (110);
+      \draw[dashed] (001) -- (101);
+      \draw[dashed] (001) -- (011);
+      \draw[dashed] (101) -- (111);
+      \draw[dashed] (011) -- (111);
+      \draw[dashed] (110) -- (111);
+    \end{tikzpicture}
+  \end{center}
+  \begin{parts}
+    \part determine as componentes $x$, $y$ e $z$ da for\c{c}a resultante sobre
+    a carga no ponto $A$, exercida pelas outras sete cargas.
+    \begin{solution}
+      \begin{center}
+        \begin{tikzpicture}[scale=2]
+          \node[fill, circle] (000) at (0,0,0) {};
+          \node[fill, circle] (100) at (1,0,0) {};
+          \node[fill, circle] (010) at (0,1,0) {};
+          \node[fill, circle] (001) at (0,0,1) {};
+          \node[fill, circle] (110) at (1,1,0) {};
+          \node[fill, circle] (101) at (1,0,1) {};
+          \node[fill, circle] (011) at (0,1,1) {};
+          \node[fill, circle] (111) at (1,1,1) {};
+          % \node[above] at (111.north) {$A$};
+          \draw[dotted] (000) -- (100);
+          \draw[dotted] (000) -- (010);
+          \draw[dotted] (000) -- (001);
+          \draw[dotted] (100) -- (110);
+          \draw[dotted] (100) -- (101);
+          \draw[dotted] (010) -- (011);
+          \draw[dotted] (010) -- (110);
+          \draw[dotted] (001) -- (101);
+          \draw[dotted] (001) -- (011);
+          \draw[dotted] (101) -- (111);
+          \draw[dotted] (011) -- (111);
+          \draw[dotted] (110) -- (111);
+
+          \draw[->] (111) -- +(1,0,0);
+          \draw[->] (111) -- +(0.707,0.707,0);
+          \draw[->] (111) -- +(0.707,0,0.707);
+          \draw[->] (111) -- +(0.577,0.577,0.577);
+          \draw[->] (111) -- +(0,1,0);
+          \draw[->] (111) -- +(0,0,1);
+          \draw[->] (111) -- +(0,0.707,0.707);
+        \end{tikzpicture}
+      \end{center}
+    \end{solution}
+
+    \part quais s\~{a}o o m\'{o}dulo e a dire\c{c}\~{a}o desta for\c{c}a
+    resultante?
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question Duas cargas puntiformes id\^{e}nticas $+q$ s\~{a}o fixadas no
+  espa\c{c}o a uma dist\^{a}ncia $d$. Uma carga $-Q$ de massa $m$ \'{e} livre
+  para se mover e jaz inicialmente em repouso na mediatriz do segmento que liga
+  as duas cargas fizas, a uma dist\^{a}ncia $x$.
+  \begin{center}
+    \begin{tikzpicture}[scale=2]
+      \node[draw, circle] (10) at (1,0) {$-Q$};
+      \node[draw, circle] (01) at (0,1) {$+q$};
+      \node[draw, circle] (0-1) at (0,-1) {$+q$};
+      \draw (01) -- (0,0) node[midway, left] {$d/2$} -- (0-1) node[midway, left]
+      {$d/2$};
+      \draw (0,0) -- (10) node[midway, below] {$x$};
+    \end{tikzpicture}
+  \end{center}
+  \begin{parts}
+    \part Mostre que se $x<<d$, a for\c{c}a el\'{e}trica sobre $-Q$ \'{e}
+    proporcional a $x$ e obtenha o per\'{i}odo da oscila\c{c}\~{a}o;
+    \begin{solution}
+      
+    \end{solution}
+
+    \part Qual ser\'{a} a velocidade da carga $-Q$, no ponto m\'{e}dio entre as
+    cargas fixas, se ela for abandonada do repouso num ponto $x = a << d$?
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question Uma carga positiva est\'{a} distribu\'{i}da numa
+  semicircunfer\^{e}ncia de raio $R=60$cm, como mostrado na figura abaixo. A
+  densidade linear de carga ao longo da curva \'{e} descita pela express\~{a}o
+  $\lambda = \lambda_0 \cos(\theta)$. A carga total da semicircunfer\^{e}ncia
+  \'{e} $12,0\mu$C. Calcule a for\c{c}a total sobre a carga de $3,0\mu$C
+  colocada no centro da curvatura.
+  \begin{center}
+    \begin{tikzpicture}[scale=2]
+      \draw (-1.2,0) -- (1.2,0);
+      \draw (0,-1em) -- (0,1.2);
+      \draw[color=red] (1,0) arc (0:180:1);
+      \draw (0,0) -- (70:1) node[midway, below right] {$R$};
+      \draw (70:.5) arc (70:90:.5) node[above right] {$\theta$};
+    \end{tikzpicture}
+  \end{center}
+  \begin{solution}
+    
+  \end{solution}
+\end{questions}
+\end{document}
